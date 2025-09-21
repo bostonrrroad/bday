@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://i.ibb.co.com/hXZsYxZ/heart.png">
+  <title>happy birthday sayang🩷</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; min-height: 100%; }
+    body {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #444;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+    .page {
+      background-color: rgba(255, 255, 255, 0.4);
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease;
+    }
+    .page.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    h1, h2 { color: #4d4d4d; margin-bottom: 1rem; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .highlight { color: #5e5e5e; font-weight: bold; }
+    .button {
+      background-color: #f0dada;
+      color: #5e5e5e;
+      border: none;
+      border-radius: 25px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background 0.3s;
+    }
+    .button:hover { background-color: #e5c7c7; }
+img {
+  max-width: 70vw;
+  max-height: 50vh;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); hapus ini */
+}
+
+    .letter {
+      white-space: pre-line;
+      font-size: 1.1rem;
+      max-width: 600px;
+      text-align: left;
+      border-left: 3px solid #c49b9b;
+      padding-left: 15px;
+      min-height: 200px;
+      color: #4e4e4e;
+      max-height: 300px;
+      overflow-y: auto;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    .falling {
+      position: fixed;
+      top: -30px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      to { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+    }
+    @media (max-width: 600px) {
+      body { background-attachment: scroll; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.5rem; }
+      .button { padding: 10px 20px; font-size: 1rem; }
+      .letter { font-size: 1rem; max-height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>hi babe!</span> </h1>
+  <p><em>@devinarns</em></p>
+  <button class="button" onclick="goToPage('page2')">click here</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <p>are u ready to open this?</p>
+  <div class="buttons">
+    <button class="button" onclick="goToPage('page3')">sure!</button>
+    <button class="button" onclick="goToPage('pageYes')">um naur</button>
+  </div>
+</div>
+
+<!-- PAGE NO -->
+<div class="page" id="pageNo">
+  <img src="no.gif" alt="Oops No" />
+  <p>hum ko gitu..tap SURE sekarang juga 😡</p>
+  <div class="buttons">
+    <button class="button" onclick="goToPage('page2')">back</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <img src="3.gif" alt="Love Note" />
+  <p>yeay terimakasih sudah menjawab SURE! last one i made something for u sayang, read it slowly yaaa ..</p>
+  <button class="button" onclick="goToPage('page4')">okee sayang</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4"
+  <h1>selamat 19 tahun, Daffa Anugrah Hasan!</h1>
+  <p>selamat bertumbuh lebih baik lagi yaaa, sehat dan bahagia selalu sayang …</p>
+  <button class="button" onclick="goToPage('page5')">aku nulis sesuatu yang spesial bgt buat kamuuu 💌</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5" style="font-family: 'Montserrat', sans-serif;">
+  <div style="text-align: center; margin-top: 15px;">
+    <img src="5.gif" alt="foto" style="width: 80%; max-width: 280px; border-radius: 12px; margin-bottom: 20px;" />
+
+  </div>
+  <h2 style="text-align: center;">a wish for u on ur birthday 🥹🫶🏻</h2>
+  <div class="letter" id="letterText"></div>
+</div>
+
+<audio id="bg-music" src="keshi UNDERSTAND.mp3" autoplay loop></audio>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  const fullLetter=`my love, happy birthday 🤍
+sometimes i wonder how the universe could be so kind to let me meet you. out of billions of souls in this world, it chose you to be mine and for that, i’ll be forever grateful.
+ingat ga waktu pertama kali kita ga sengaja ketemu? ga nyangka dari obrolan singkat itu kita bisa nyampe sejauh ini. dari tawa canggung, chat malam-malam yang ga berujung, sampai momen-momen kecil yang tiba-tiba bikin aku sadar: kamu lebih dari yang aku bayangkan. sekarang kita udah 9 bulan bareng, sembilan bulan yang penuh belajar dan tumbuh bersama.
+kamu itu bukan sekadar orang yang aku sayang, kamu adalah rumah, tempat aku kembali setiap kali dunia terasa melelahkan.
+di umur baru ini, i hope you’ll find more reasons to smile more strength to chase your dreams, and more peace within yourself. aku percaya kamu bisa lewat semua hal, karena aku lihat ada kekuatan besar di diri kamu yang mungkin kamu sendiri ga nyadar.
+no matter what happens, i’ll always be here loving you, protecting you, praying for you, your safe place, and the one who will choose you over and over again. you’re my favorite chapter, my best decision, and my forever.
+happy birthday, sayang. terima kasih sudah jadi kamu yang lembut, yang kuat, yang jujur, dan yang selalu bikin aku merasa pulang. aku cinta kamu, lebih dari yang kata-kata bisa jelasin.
+  function goToPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    const next = document.getElementById(pageId);
+    next.classList.add('active');
+    if(pageId === 'page5') {
+      const music = document.getElementById("bg-music");
+      music.muted = false;
+      music.play().catch(e => console.log("Autoplay blocked:", e));
+
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+      typeText(fullLetter, document.getElementById('letterText'), 25);
+      startFallingSymbols();
+    }
+  }
+
+  function typeText(text, element, speed) {
+    element.innerHTML = '';
+    let i = 0;
+    function type() {
+      if(i < text.length) {
+        element.innerHTML += text.charAt(i);
+        element.scrollTop = element.scrollHeight;
+        i++;
+        setTimeout(type, speed);
+      }
+    }
+    type();
+  }
+
+function startFallingSymbols() {
+  const symbols = ['💗', '✨']; // campuran love dan shine
+  setInterval(() => {
+    const el = document.createElement('div');
+    el.classList.add('falling');
+    el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = '24px';
+    el.style.animation = fall ${3 + Math.random()*2}s linear forwards`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+  300.;
+</script>
+
+</body>
+</html>
